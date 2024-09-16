@@ -35,10 +35,6 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        // {
-        //     $company = Company::create($request->validated());
-        //     return response()->json(['message' => 'Company created successfully', 'company' => $company], 201);
-        // }
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
@@ -75,7 +71,7 @@ class CompanyController extends Controller
         }
 
         return response()->json([
-            'token'=>$company->createToken("API TOKEN")->plainTextToken,
+            //'token'=>$company->createToken("API TOKEN")->plainTextToken,
             'status'=>true,
             'message'=>'found',
             'data'=>$company,
@@ -103,7 +99,7 @@ class CompanyController extends Controller
         $company->update($validated);
         return response()->json([
             'message' => 'Company updated successfully',
-            'company' => $company]);
+            'company' => $company],200);
     }
 
     /**

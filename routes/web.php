@@ -2,13 +2,19 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Company;
+use App\Models\Employee;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $companies=Company::count();
+    $employees=Employee::count();
+    $company = Company::latest('id')->get();
+    return view('dashboard',compact('companies','employees','company'));
+    //return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
