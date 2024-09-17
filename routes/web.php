@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Company;
@@ -10,11 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $companies=Company::count();
-    $employees=Employee::count();
-    $company = Company::latest('id')->get();
-    return view('dashboard',compact('companies','employees','company'));
-    //return view('dashboard');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -23,3 +20,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__.'/auth.php';
+Route::get('admin/dashboard', [UserController::class, 'index']);

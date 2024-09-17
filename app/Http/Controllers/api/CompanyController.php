@@ -27,7 +27,7 @@ class CompanyController extends Controller
             });
         }
        $companies=$companies->paginate(2);
-        return response()->json($companies,201);
+        return response()->json($companies,200);
     }
 
     /**
@@ -38,7 +38,8 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-            'logo' => 'required|mimes:jpg,png,jpeg|max:10240',
+           // 'logo' => 'required|mimes:jpg,png,jpeg|max:10240',
+                  'logo' => 'nullable|string|max:255',
             'website' => 'required|string|max:255',
         ]);
         $image = $request->file('logo');
@@ -78,7 +79,7 @@ class CompanyController extends Controller
         ],200);
     }
     catch (NotFoundHttpException $e) {
-        return response()->json(['error' => $e->getMessage()], 404);
+        return response()->json(['error' => $e->getMessage()]);//, 404
     }
     }
 
@@ -92,14 +93,16 @@ class CompanyController extends Controller
         $validated = $request->validate([
            'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-            'logo' => 'nullable|mimes:jpg,png,jpeg|max:10240',
+            //'logo' => 'nullable|mimes:jpg,png,jpeg|max:10240',
+            'logo'=>'nullable|string|max:255',
             'website' => 'required|string|max:255',
         ]);
 
         $company->update($validated);
         return response()->json([
             'message' => 'Company updated successfully',
-            'company' => $company],200);
+            'company' => $company,
+        ],200);
     }
 
     /**
@@ -109,17 +112,17 @@ class CompanyController extends Controller
     {
         try{
             $company=Company::find($id);
-            if(!$company){
+             if(!$company){
                 throw new NotFoundHttpException('Company is not found');
-            }
+             }
         $company = Company::findOrFail($id);
         $company->delete();
         return response()->json([
-            'message' => 'Company deleted successfully',
-            'data'=>$company,
-        ],200);
-    }catch (NotFoundHttpException $e){
-        return response()->json(['error' => $e->getMessage()], 404);
+             'message' => 'Company deleted successfully',
+           //'data'=>$company,
+        ],204);
+     }catch (NotFoundHttpException $e){
+        return response()->json(['error' => $e->getMessage()], 404);//
     }
     }
 }
