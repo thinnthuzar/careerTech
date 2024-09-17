@@ -2,7 +2,7 @@
 
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
- 
+
 
  <!DOCTYPE html>
  <html lang="en">
@@ -29,7 +29,7 @@
      </style>
  </head>
  <body>
- 
+
      <!-- Sidebar -->
      <div class="sidebar">
          <h2 class="mb-4">Admin Dashboard</h2>
@@ -38,7 +38,7 @@
                  <a class="nav-link text-white" href="#">Dashboard</a>
              </li>
              <li class="nav-item mb-2">
-                 <a class="nav-link text-white" href="#">Users</a>
+                 <a class="nav-link text-white" href="#">Companies</a>
              </li>
              <li class="nav-item mb-2">
                  <a class="nav-link text-white" href="#">Settings</a>
@@ -51,11 +51,11 @@
              </li>
          </ul>
      </div>
- 
+
      <!-- Main content -->
      <div class="main-content">
          <h1 class="mb-4 text-white">Dashboard Overview</h1>
-         
+
          <!-- Stats Cards -->
          <div class="row">
              <div class="col-md-4">
@@ -83,11 +83,11 @@
                  </div>
              </div>
          </div>
- 
+
          <!-- Recent Activity -->
          <div class="text-white mt-5">
             <h3>Company Lists</h3>
-            
+
             <table class="table table-striped">
                 <tr>
                     <th>No</th>
@@ -96,30 +96,30 @@
                 </tr>
                 @foreach ($company as $c)
                 <tbody>
-                   
+
                     <tr>
                         <td>{{$c->id}}</td>
                         <td>{{$c->name}}</td>
                         <td>{{$c->email}}</td>
 
                     </tr>
-                    
+
                 </tbody>
                 @endforeach
             </table>
-         
+
         </div>
      </div>
- 
+
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
  </body>
  </html>
- 
-             
-            
-               
-               
-            
+
+
+
+
+
+
 </div>
 
 </x-app-layout>
