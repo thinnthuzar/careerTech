@@ -13,4 +13,8 @@ class Employee extends Model
         return $this->hasBelongTo(Company::class);
 
     }
+    public function users(){
+        return $this->hasBelongTo(User::class);
+
+    }
 }

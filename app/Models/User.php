@@ -21,6 +21,10 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    public function employees(){
+        return $this->hasMany(Employee::class);
+
+    }
 
     /**
      * The attributes that should be hidden for serialization.
