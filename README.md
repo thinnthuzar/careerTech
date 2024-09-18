@@ -13,16 +13,17 @@ copy .env.example and rename it .env
  php artisan db:seed --class=AdminSeeder
 
 # test api in postman
+
 # api endpoints of companies
- Route::get('companies', [CompanyController::class, 'index']);
- Route::post('companies', [CompanyController::class, 'store']);
- Route::get('companies/{id}', [CompanyController::class, 'show']);
- Route::put('companies/{id}', [CompanyController::class, 'update']);
- Route::delete('companies/{id}', [CompanyController::class, 'destroy']);
+ Get /api/v1/companies
+ Post /api/v1/companies
+ Get /api/v1/companies/{id}     
+ Put /api/v1/companies/{id}
+ Delete /api/v1/companies/{id}
 
 # api endpoints of employees
- Route::get('employees', [EmployeeController::class, 'index']);
- Route::post('employees', [EmployeeController::class, 'store']);
- Route::get('employees/{id}', [EmployeeController::class, 'show']);
- Route::put('employees/{id}', [EmployeeController::class, 'update']);
- Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
+ Get /api/v1/employees
+ Post /api/v1/employees
+ Get /api/v1/employees/{id}     
+ Put /api/v1/employees/{id}
+ Delete /api/v1/employees/{id}
