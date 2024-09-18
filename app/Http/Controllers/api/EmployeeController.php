@@ -44,7 +44,7 @@ class EmployeeController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
-            'profile' => 'nullable|mimes:jpg,png,jpeg|max:10240',
+            'profile' => 'required|mimes:jpg,png,jpeg|max:10240',
 
         ]);
         $image = $request->file('profile');

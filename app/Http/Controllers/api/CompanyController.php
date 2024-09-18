@@ -38,8 +38,8 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-           // 'logo' => 'required|mimes:jpg,png,jpeg|max:10240',
-                  'logo' => 'nullable|string|max:255',
+            'logo' => 'required|mimes:jpg,png,jpeg|max:10240',
+            // 'logo' => 'nullable|string|max:255',
             'website' => 'required|string|max:255',
         ]);
         $image = $request->file('logo');
@@ -68,9 +68,8 @@ class CompanyController extends Controller
         try{
         $company=Company::find($id);
         if (!$company) {
-            throw new NotFoundHttpException('agent is not found');
+            throw new NotFoundHttpException('company is not found');
         }
-
         return response()->json([
             //'token'=>$company->createToken("API TOKEN")->plainTextToken,
             'status'=>true,
@@ -93,8 +92,8 @@ class CompanyController extends Controller
         $validated = $request->validate([
            'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-            //'logo' => 'nullable|mimes:jpg,png,jpeg|max:10240',
-            'logo'=>'nullable|string|max:255',
+            'logo' => 'nullable|mimes:jpg,png,jpeg|max:10240',
+//            'logo'=>'nullable|string|max:255',
             'website' => 'required|string|max:255',
         ]);
 
@@ -118,11 +117,11 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         $company->delete();
         return response()->json([
-             'message' => 'Company deleted successfully',
-           //'data'=>$company,
+            'message' => 'Company deleted successfully',
+            'data'=>$company,
         ],204);
      }catch (NotFoundHttpException $e){
-        return response()->json(['error' => $e->getMessage()], 404);//
+        return response()->json(['error' => $e->getMessage()], 404);
     }
     }
 }
